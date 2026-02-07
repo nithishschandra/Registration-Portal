@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Event Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>User Profile</h1>
+            <div class="header-nav">
+                <a href="dashboard.html" class="btn btn-secondary" style="text-decoration: none;">Dashboard</a>
+                <a href="settings.html" class="btn btn-secondary" style="text-decoration: none;">Settings</a>
+                <button class="btn btn-secondary" onclick="localStorage.clear(); window.location.href='index.html';">Logout</button>
+            </div>
+        </div>
+
+        <div class="hero-event-section">
+            <div class="event-card big-card" style="text-align: center;">
+                <div id="user-initials" style="width: 80px; height: 80px; background: linear-gradient(135deg, #ffffff, #94a3b8); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #000; font-weight: 900; font-family: 'Cinzel', serif;">
+                    ??
+                </div>
+                <h2 id="display-name" style="margin-bottom: 10px;">User Name</h2>
+                <p class="large-text">Registered Student | 2026 Season</p>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="vertical-mission-panel">
+            <div class="mission-item">
+                <h4>Full Name</h4>
+                <p id="detail-name">---</p>
+            </div>
+            <div class="mission-item">
+                <h4>Email Address</h4>
+                <p id="detail-email">---</p>
+            </div>
+            <div class="mission-item" style="border-bottom: none;">
+                <h4>Account Status</h4>
+                <p>Verified Student Account</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Pull the exact data saved during login
+            const savedName = localStorage.getItem("userName");
+            const savedEmail = localStorage.getItem("userEmail");
+
+            if (savedName && savedEmail) {
+                // Update the text on the page
+                document.getElementById("display-name").innerText = savedName;
+                document.getElementById("detail-name").innerText = savedName;
+                document.getElementById("detail-email").innerText = savedEmail;
+
+                // Create initials (e.g., "Rahul Kumar" -> "RK")
+                const initials = savedName.split(" ").map(n => n[0]).join("").toUpperCase();
+                document.getElementById("user-initials").innerText = initials.substring(0, 2);
+            }
+        });
+    </script>
+</body>
+</html>

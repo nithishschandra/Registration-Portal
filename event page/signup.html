@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Event Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-box">
+        <h2>Create Account</h2>
+        <p>Join the event portal today</p>
+        
+        <form id="signup-form">
+            <div class="input-group">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="signup-email" placeholder="Email Address" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="signup-password" placeholder="Password (min. 6 chars)" required>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+        </form>
+        
+        <p>Already have an account? <a href="index.html">Login</a></p>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>

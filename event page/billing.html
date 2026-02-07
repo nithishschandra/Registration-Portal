@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing - Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-box" style="max-width: 450px; margin-top: 20px; margin-bottom: 20px;">
+        <h2 id="display-event-name">Event Name</h2>
+        <p>Complete your registration details</p>
+        <hr style="border: 0.5px solid #eee; margin: 20px 0;">
+
+        <form id="billing-form">
+            <div id="display-price" style="font-size: 1.5rem; font-weight: bold; color: #4f46e5; margin-bottom: 15px;">₹0.00</div>
+            
+            <input type="text" id="user-name" placeholder="Full Name" required>
+            
+            <input type="text" id="dept-name" placeholder="Department (e.g. CSE)" required>
+            <input type="text" id="college-name" placeholder="College Name" required>
+            
+            <div style="margin: 20px 0; padding: 15px; border: 2px solid #e5e7eb; border-radius: 12px; background: #fff;">
+                <p><strong>Scan to Pay via UPI</strong></p>
+                <img id="upi-qr" src="" alt="UPI QR Code" style="width: 200px; height: 200px;">
+                <p id="upi-id-text" style="font-size: 0.8rem; color: #666; margin-top: 10px;">UPI ID: yourname@upi</p>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%;">Confirm Payment & Register</button>
+        </form>
+        
+        <p><a href="events.html" style="text-decoration: none; color: #666; font-size: 0.8rem;">Cancel and go back</a></p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventName = urlParams.get('event') || "Event";
+        const price = urlParams.get('price') || "0";
+        const myUpiId = "yourname@bank"; 
+
+        document.getElementById('display-event-name').innerText = eventName;
+        document.getElementById('display-price').innerText = "₹" + price + ".00";
+        document.getElementById('upi-id-text').innerText = "UPI ID: " + myUpiId;
+
+        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=${myUpiId}&pn=EventPortal&am=${price}&cu=INR`;
+        document.getElementById('upi-qr').src = qrUrl;
+
+        document.getElementById('billing-form').onsubmit = (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('user-name').value;
+            const dept = document.getElementById('dept-name').value;
+            
+
+            alert(`Registration successful!\n\nName: ${fullName}\nEvent: ${eventName}\nDept: ${dept}`);
+            window.location.href = "dashboard.html";
+        };
+    </script>
+</body>
+</html>
