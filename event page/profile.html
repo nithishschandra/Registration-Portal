@@ -47,17 +47,15 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Pull the exact data saved during login
+
             const savedName = localStorage.getItem("userName");
             const savedEmail = localStorage.getItem("userEmail");
 
             if (savedName && savedEmail) {
-                // Update the text on the page
                 document.getElementById("display-name").innerText = savedName;
                 document.getElementById("detail-name").innerText = savedName;
                 document.getElementById("detail-email").innerText = savedEmail;
 
-                // Create initials (e.g., "Rahul Kumar" -> "RK")
                 const initials = savedName.split(" ").map(n => n[0]).join("").toUpperCase();
                 document.getElementById("user-initials").innerText = initials.substring(0, 2);
             }
