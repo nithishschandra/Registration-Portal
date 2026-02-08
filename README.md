@@ -29,3 +29,6 @@ auth.js – Firebase setup and authentication handling
 style.css – Styling and layout customization
 
 >>This project was developed as part of a placement portfolio in 2026.
+
+>> Live Demo
+You can access the live registration portal here: (https://project-10c78.web.app)
